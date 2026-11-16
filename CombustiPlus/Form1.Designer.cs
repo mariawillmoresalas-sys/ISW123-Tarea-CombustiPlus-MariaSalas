@@ -48,15 +48,15 @@
             lblCombustible = new Label();
             cmbCombustible = new ComboBox();
             groupBox1 = new GroupBox();
-            btnCotizar = new Button();
-            btnDespachar = new Button();
-            cmbPago = new ComboBox();
-            numericUpDown1 = new NumericUpDown();
             txtPlaca = new TextBox();
+            nudGalones = new NumericUpDown();
+            cmbPago = new ComboBox();
+            btnDespachar = new Button();
+            btnCotizar = new Button();
             gpbDespacho.SuspendLayout();
             gpbDetalle.SuspendLayout();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudGalones).BeginInit();
             SuspendLayout();
             // 
             // comboBox1
@@ -229,7 +229,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(txtPlaca);
-            groupBox1.Controls.Add(numericUpDown1);
+            groupBox1.Controls.Add(nudGalones);
             groupBox1.Controls.Add(cmbPago);
             groupBox1.Controls.Add(btnDespachar);
             groupBox1.Controls.Add(btnCotizar);
@@ -245,14 +245,27 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Nuevo despacho";
             // 
-            // btnCotizar
+            // txtPlaca
             // 
-            btnCotizar.Location = new Point(24, 186);
-            btnCotizar.Name = "btnCotizar";
-            btnCotizar.Size = new Size(98, 23);
-            btnCotizar.TabIndex = 24;
-            btnCotizar.Text = "Cotizar";
-            btnCotizar.UseVisualStyleBackColor = true;
+            txtPlaca.Location = new Point(65, 30);
+            txtPlaca.Name = "txtPlaca";
+            txtPlaca.Size = new Size(174, 23);
+            txtPlaca.TabIndex = 12;
+            // 
+            // nudGalones
+            // 
+            nudGalones.Location = new Point(79, 98);
+            nudGalones.Name = "nudGalones";
+            nudGalones.Size = new Size(160, 23);
+            nudGalones.TabIndex = 27;
+            // 
+            // cmbPago
+            // 
+            cmbPago.FormattingEnabled = true;
+            cmbPago.Location = new Point(65, 136);
+            cmbPago.Name = "cmbPago";
+            cmbPago.Size = new Size(174, 23);
+            cmbPago.TabIndex = 26;
             // 
             // btnDespachar
             // 
@@ -263,27 +276,15 @@
             btnDespachar.Text = "Despachar";
             btnDespachar.UseVisualStyleBackColor = true;
             // 
-            // cmbPago
+            // btnCotizar
             // 
-            cmbPago.FormattingEnabled = true;
-            cmbPago.Location = new Point(65, 136);
-            cmbPago.Name = "cmbPago";
-            cmbPago.Size = new Size(174, 23);
-            cmbPago.TabIndex = 26;
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(79, 98);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(160, 23);
-            numericUpDown1.TabIndex = 27;
-            // 
-            // txtPlaca
-            // 
-            txtPlaca.Location = new Point(65, 30);
-            txtPlaca.Name = "txtPlaca";
-            txtPlaca.Size = new Size(174, 23);
-            txtPlaca.TabIndex = 12;
+            btnCotizar.Location = new Point(24, 186);
+            btnCotizar.Name = "btnCotizar";
+            btnCotizar.Size = new Size(98, 23);
+            btnCotizar.TabIndex = 24;
+            btnCotizar.Text = "Cotizar";
+            btnCotizar.UseVisualStyleBackColor = true;
+            btnCotizar.Click += btnCotizar_Click;
             // 
             // Form1
             // 
@@ -300,7 +301,7 @@
             gpbDetalle.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudGalones).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -331,7 +332,7 @@
        
         private Button btnCotizar;
         private Button btnDespachar;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown nudGalones;
         private ComboBox cmbPago;
         private TextBox txtPlaca;
     }
