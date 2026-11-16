@@ -149,6 +149,7 @@
             bntPorCombustible.TabIndex = 11;
             bntPorCombustible.Text = "Por combustible";
             bntPorCombustible.UseVisualStyleBackColor = true;
+            bntPorCombustible.Click += bntPorCombustible_Click;
             // 
             // lblResumen
             // 

@@ -4,6 +4,7 @@ namespace CombustiPlus
 
     {
         List<Despacho> despachos = new List<Despacho>();
+        Dictionary<string, decimal> galonesPorCombustible = new Dictionary<string, decimal>();
 
         public Form1()
         {
@@ -123,6 +124,76 @@ namespace CombustiPlus
             }
 
             decimal total = totalDescuento + recargo;
+
+
+            Despacho nuevoDespacho = new Despacho();
+
+            nuevoDespacho.Numero = despachos.Count + 1;
+            nuevoDespacho.Placa = txtPlaca.Text;
+            nuevoDespacho.Combustible = cmbCombustible.Text;
+            nuevoDespacho.Galones = galones;
+            nuevoDespacho.Pago = cmbPago.Text;
+            nuevoDespacho.Total = total;
+
+            despachos.Add(nuevoDespacho);
+
+            lstDespachos.Items.Add(nuevoDespacho);
+
+            decimal totalVendido = 0;
+            decimal galonesTotales = 0;
+
+            Despacho despachoMayor = despachos[0];
+
+            foreach (Despacho despacho in despachos)
+            {
+                totalVendido += despacho.Total;
+                galonesTotales += despacho.Galones;
+
+                if (despacho.Total > despachoMayor.Total)
+                {
+                    despachoMayor = despacho;
+                }
+            }
+
+            lblResumen.Text =
+                "Cantidad de despachos: " + despachos.Count +
+                "\nTotal vendido: RD$ " + totalVendido.ToString("N2") +
+                "\nGalones vendidos: " + galonesTotales.ToString("N1") +
+                "\nDespacho mayor: #" + despachoMayor.Numero;
+
+        }
+
+        private void bntPorCombustible_Click(object sender, EventArgs e)
+        {
+            if (despachos.Count == 0)
+            {
+                MessageBox.Show("Todavía no hay despachos registrados.");
+                return;
+            }
+
+            galonesPorCombustible.Clear();
+
+            foreach (Despacho despacho in despachos)
+            {
+                if (galonesPorCombustible.ContainsKey(despacho.Combustible))
+                {
+                    galonesPorCombustible[despacho.Combustible] += despacho.Galones;
+                }
+                else
+                {
+                    galonesPorCombustible[despacho.Combustible] = despacho.Galones;
+                }
+            }
+
+            lstDetalle.Items.Clear();
+
+            foreach (KeyValuePair<string, decimal> combustible in galonesPorCombustible)
+            {
+                lstDetalle.Items.Add(
+                    combustible.Key + ": " +
+                    combustible.Value.ToString("N1") + " galones"
+                );
+            }
         }
     }
 }
