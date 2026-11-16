@@ -1,7 +1,10 @@
 namespace CombustiPlus
 {
     public partial class Form1 : Form
+
     {
+        List<Despacho> despachos = new List<Despacho>();
+
         public Form1()
         {
             InitializeComponent();
@@ -82,6 +85,44 @@ namespace CombustiPlus
             lstDetalle.Items.Add("Descuento: RD$ " + descuento.ToString("N2"));
             lstDetalle.Items.Add("Recargo: RD$ " + recargo.ToString("N2"));
             lstDetalle.Items.Add("TOTAL: RD$ " + total.ToString("N2"));
+        }
+
+        private void btnDespachar_Click(object sender, EventArgs e)
+        {
+            if (!ValidarDatos())
+            {
+                return;
+            }
+
+            decimal precio = cmbCombustible.Text switch
+            {
+                "Premium" => 290,
+                "Regular" => 272,
+                "Gasoil" => 225,
+                _ => 0
+            };
+
+            decimal galones = nudGalones.Value;
+
+            decimal subtotal = precio * galones;
+
+            decimal descuento = 0;
+
+            if (galones >= 20)
+            {
+                descuento = subtotal * 0.02m;
+            }
+
+            decimal totalDescuento = subtotal - descuento;
+
+            decimal recargo = 0;
+
+            if (cmbPago.Text == "Tarjeta")
+            {
+                recargo = totalDescuento * 0.03m;
+            }
+
+            decimal total = totalDescuento + recargo;
         }
     }
 }

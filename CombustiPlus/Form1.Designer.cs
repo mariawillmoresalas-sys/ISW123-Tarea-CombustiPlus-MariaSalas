@@ -255,6 +255,7 @@
             // nudGalones
             // 
             nudGalones.Location = new Point(79, 98);
+            nudGalones.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             nudGalones.Name = "nudGalones";
             nudGalones.Size = new Size(160, 23);
             nudGalones.TabIndex = 27;
@@ -275,6 +276,7 @@
             btnDespachar.TabIndex = 25;
             btnDespachar.Text = "Despachar";
             btnDespachar.UseVisualStyleBackColor = true;
+            btnDespachar.Click += btnDespachar_Click;
             // 
             // btnCotizar
             // 
